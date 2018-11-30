@@ -5,13 +5,23 @@ buildscript {
     }
     dependencies {
         classpath 'com.google.gradle:osdetector-gradle-plugin:1.6.0'
-        classpath "org.javamodularity:moduleplugin:1.1.1"
+        classpath 'org.kordamp.gradle:jdeps-gradle-plugin:0.5.0'
+        classpath 'org.kordamp.gradle:jdeprscan-gradle-plugin:0.4.0'
+        classpath 'gradle.plugin.gradle-java9-collision:plugin:0.2.3'
+        classpath 'org.javamodularity:moduleplugin:1.2.1'
+        classpath 'gradle.plugin.org.beryx:badass-jlink-plugin:2.1.6'
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.20.0'
     }
 }
 
 apply plugin: 'application'
 apply plugin: 'com.google.osdetector'
+apply plugin: 'org.kordamp.gradle.jdeps'
+apply plugin: 'org.kordamp.gradle.jdeprscan'
+apply plugin: 'org.jonnyzzz.java9c'
 apply plugin: 'org.javamodularity.moduleplugin'
+apply plugin: 'org.beryx.jlink'
+apply plugin: 'com.github.ben-manes.versions'
 
 ext.platform = osdetector.os == 'osx' ? 'mac' : osdetector.os == 'windows' ? 'win' : osdetector.os
 
@@ -26,3 +36,10 @@ dependencies {
 }
 
 mainClassName = 'hellofx/hellofx.HelloFX'
+
+jlink {
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    launcher {
+        name = 'hellofx'
+    }
+}
