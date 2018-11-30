@@ -10,9 +10,6 @@ is properly set to the Java 11 installation directory.
 ### Linux / Mac
 
 If you run on Linux or Mac, follow these steps:
-
-    cd HelloFX/Gradle/hellofx
-    
 To run the project:
     
     ./gradlew run
@@ -20,9 +17,6 @@ To run the project:
 ### Windows
 
 If you run on Windows, follow these steps:
-
-    cd HelloFX\Gradle\hellofx
-
 To run the project:
     
     gradlew run
